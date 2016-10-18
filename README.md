@@ -1,3 +1,2 @@
-Creating a new branch is quick.
-ZJ
-hello
+just for test. 
+	--by Lin-ZJ
