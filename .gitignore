@@ -1,6 +1,5 @@
 # DEV C++
 *.win
 *.layout
-*.dev
 *.o
 *.exe
