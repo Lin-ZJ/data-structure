@@ -2,15 +2,17 @@
 #define _STATICLIST_H_
 
 typedef void StaticList;
-typedef struct _tag_StaticListNode StaticListNode;
+typedef void StaticListNode;
 
-StaticList* StaticList_Create();
+StaticList* StaticList_Create(int capacity);
 
 void StaticList_Destroy(StaticList* list);
 
 void StaticList_Clear(StaticList* list);
 
 int StaticList_Length(StaticList* list);
+
+int StaticList_Capacity(StaticList* list);
 
 int StaticList_Insert(StaticList* list, StaticListNode* node, int pos);
 
