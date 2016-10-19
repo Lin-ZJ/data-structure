@@ -101,7 +101,7 @@ int StaticList_Insert(StaticList* list, StaticListNode* node, int pos)
 	
 	if(ret)
 	{
-		for(i=1; i<slist->capacity; i++)
+		for(i=1; i<=slist->capacity; i++)
 		{
 			if(slist->node[i].next == AVAILABLE)
 			{
