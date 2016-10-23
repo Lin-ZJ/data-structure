@@ -1,55 +1,52 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "CircleList.h"
-struct Value
+typedef struct _tag_Value
 {
 	CircleListNode header;
 	int v;
-};
+}Value;
 int main(int argc, char *argv[])
 {
 	int i = 0;
+	int n = 0;
+	int m = 0;
 	
+	printf("Please enter: n,m\n");
+	scanf("%d,%d",&n,&m);
+	
+	Value* v = (Value*)malloc(sizeof(Value)*n);
 	CircleList* list = CircleList_Create();
 	
-	struct Value v1;
-	struct Value v2;
-	struct Value v3;
-	struct Value v4;
-	struct Value v5;
-	struct Value v6;
-	struct Value v7;
-	struct Value v8;
 	
-	v1.v = 1;
-	v2.v = 2;
-	v3.v = 3;
-	v4.v = 4;
-	v5.v = 5;
-	v6.v = 6;
-	v7.v = 7;
-	v8.v = 8;
-	
-	CircleList_Insert(list, (CircleListNode*)&v1, CircleList_Length(list));
-	CircleList_Insert(list, (CircleListNode*)&v2, CircleList_Length(list));
-	CircleList_Insert(list, (CircleListNode*)&v3, CircleList_Length(list));
-	CircleList_Insert(list, (CircleListNode*)&v4, CircleList_Length(list));
-	
-	CircleList_Insert(list, (CircleListNode*)&v5, CircleList_Length(list)+1);
-	CircleList_Delete(list, 0);
-	
-	for(i=0; i<2*CircleList_Length(list); i++)
+	for(i=0;i<n;i++)
 	{
-		struct Value* pv = (struct Value*)CircleList_Get(list, i);
+		v[i].v=i+1;
+		CircleList_Insert(list, (CircleListNode*)&v[i], CircleList_Length(list));
+	}
+	
+	for(i=0; i<CircleList_Length(list); i++)
+	{
+		Value* pv = (Value*)CircleList_Next(list);
 		printf("%d\n", pv->v);
 	}
 	
 	printf("\n");
 	
-	while(CircleList_Length(list) > 0)
+	CircleList_Reset(list);
+	
+	while(CircleList_Length(list)>0)
 	{
-		struct Value* pv = (struct Value*)CircleList_Delete(list, 0);
+		Value* pv = NULL;
+		for(i=1;i<m;i++)
+		{
+			CircleList_Next(list);
+		}
+		pv = (Value*)CircleList_Current(list);
+		
 		printf("%d\n", pv->v);
+		
+		CircleList_DeleteNode(list, (CircleListNode*)pv);	
 	}
 	
 	CircleList_Destroy(list);
